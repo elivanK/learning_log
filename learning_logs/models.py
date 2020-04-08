@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Topic(models.Model):
     # A topic the user is learning about
     text = models.CharField(max_length=200)
@@ -9,3 +8,16 @@ class Topic(models.Model):
     def __str__(self):
         # Return a string representation of the model
         return self.text
+
+class Entry(models.Model):
+    # Something specific learned about a topic
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    data_added = models.DateTimeField(auto_now_add=True)
+    # The Meta class hold extra info for model managment
+    class Meta:
+        verbose_name_plural = 'entries'
+    # Display which info when it referes to individual entries
+    def __str__(self):
+        # Return a string representation of the model
+        return f"{self.text[:50]}..."
