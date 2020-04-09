@@ -10,5 +10,5 @@ urlpatterns = [
     # Include default auth urls
     path('', include('django.contrib.auth.urls')),
     # Registeration page
-    # path('register/', views.register, name='register'),
+    path('register/', views.register, name='register'),
 ]
